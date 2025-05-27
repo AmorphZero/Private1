@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>back.svg</file>
+        <file>pin.svg</file>
+        <file>pinned.svg</file>
+        <file>check.svg</file>
+    </qresource>
+</RCC>

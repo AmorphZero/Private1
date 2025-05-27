@@ -1,0 +1,64 @@
+// main.qml
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
+
+ApplicationWindow {
+    id: appWindow
+    width: 360
+    height: 640
+    visible: true
+    title: "Заметки"
+
+    property color primaryColor: "#B57831"
+    property color backgroundColor: "#f5f5f5"
+    property color cardColor: "white"
+    property color textColor: "#333333"
+    property color secondaryTextColor: "#666666"
+
+    property var noteColors: ["#FFCDD2", "#F8BBD0", "#D1C4E9", "#C8E6C9", "#B3E5FC", "#B2DFDB", "#FFECB3", "#D7CCC8"]
+
+    ListModel {
+        id: notesModel
+    }
+
+    StackView {
+        id: stackView
+        anchors.fill: parent
+        initialItem: mainPage
+    }
+
+    Component {
+        id: mainPage
+        MainPage {}
+    }
+
+    Component {
+        id: addNotePage
+        AddEditNotePage { isEditing: false }
+    }
+
+    // Стиль для всех кнопок приложения
+    component AppButton: Button {
+        width: parent.width * 0.8
+        height: 50
+        anchors.horizontalCenter: parent.horizontalCenter
+        font.pixelSize: 16
+        leftPadding: 0
+        rightPadding: 0
+
+        background: Rectangle {
+            radius: height/2
+            color: parent.down ? Qt.darker(appWindow.primaryColor, 1.1) : appWindow.primaryColor
+            border.width: 0
+        }
+
+        contentItem: Text {
+            text: parent.text
+            color: "white"
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            font: parent.font
+        }
+    }
+}
